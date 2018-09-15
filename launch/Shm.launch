@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+  <node name="Shm" pkg="Shm" type="Shm">
+  </node>
+  <!--
+  <node name="LuaShm" pkg="LuaShm"
+      type="LuaShm" args="
+          -configuration_directory $(find LuaShm)/config
+          -configuration_basename LuaShm.lua"
+      output="screen">
+  </node>
+  -->
+
+</launch>
