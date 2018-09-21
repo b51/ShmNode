@@ -58,7 +58,7 @@ find_package(LuaGoogle REQUIRED)
 
 catkin_package(
   INCLUDE_DIRS include
-  LIBRARIES ${PROJECT_NAME}
+  LIBRARIES ${PROJECT_NAME}Lib
   CATKIN_DEPENDS roscpp
 #  DEPENDS system_lib
 )
@@ -78,12 +78,12 @@ include_directories(
  ${catkin_INCLUDE_DIRS}
 )
 
-#add_executable(${PROJECT_NAME}
-#  src/${PROJECT_NAME}Main.cc
-#  src/${PROJECT_NAME}.cc
-#)
+add_executable(${PROJECT_NAME}
+  src/${PROJECT_NAME}Main.cc
+  src/shm_util.cpp
+)
 
-add_library(${PROJECT_NAME} SHARED
+add_library(${PROJECT_NAME}Lib SHARED
   src/shm_util.cpp
 )
 

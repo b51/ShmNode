@@ -15,13 +15,23 @@
 #include <map>
 #include <utility>
 
+static const char visionShmName[] = "vcm";
 static const char worldShmName[] = "wcm";
+static const char gctrlShmName[] = "gcm";
 
-static const char* Position[] =
+static const char* BoundingBox[] =
 {
-  "Position/X/Value",
-  "Position/Y/Value",
-  "Position/Angle/Value"
+  "BoundingBox/X/Value",
+  "BoundingBox/Y/Value",
+  "BoundingBox/Width/Value",
+  "BoundingBox/Height/Value",
+};
+
+static const char* Pose[] =
+{
+  "Pose/X/Value",
+  "Pose/Y/Value",
+  "Pose/Angle/Value"
 };
 
 /*
@@ -30,26 +40,37 @@ static struct structWorldKeys
   const char* key;
   unsigned int size;
   const char **names;
-} world_keys[] = 
+} world_keys[] =
 {
   {"time", 1, nullptr},
-  {"position", sizeof(Position)/sizeof(char*), Position},
+  {"position", sizeof(Pose)/sizeof(char*), Pose},
   {nullptr, 0, nullptr}
 };
 */
 
-struct structWorldKey
+struct structKeyValue
 {
   unsigned int size;
   const char** names;
 };
 
-typedef std::map<const char*, structWorldKey> mapWorldKeys;
+typedef std::map<const char*, structKeyValue> mapKeyValue;
 
-static mapWorldKeys world_keys =
+static const char ball_bbox_key[] = "ballBoundingBox";
+static const char goal_bbox_key[] = "goalBoundingBox";
+
+static mapKeyValue vision_keys =
+{
+  {ball_bbox_key, {sizeof(BoundingBox)/sizeof(char*), BoundingBox}},
+  {goal_bbox_key, {sizeof(BoundingBox)/sizeof(char*), BoundingBox}},
+};
+
+static const char pose_key[] = "pose";
+
+static mapKeyValue world_keys =
 {
   {"time", {1, nullptr}},
-  {"position", {sizeof(Position)/sizeof(char*), Position}},
+  {pose_key, {sizeof(Pose)/sizeof(char*), Pose}},
 };
 
 #endif
