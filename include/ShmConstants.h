@@ -19,19 +19,32 @@ static const char visionShmName[] = "vcm";
 static const char worldShmName[] = "wcm";
 static const char gctrlShmName[] = "gcm";
 
-static const char* BoundingBox[] =
+static const char* Detection[] =
 {
+  "Detected",
+
+  "Position/X/Value",
+  "Position/Y/Value",
+  "Position/Z/Value",
+
   "BoundingBox/X/Value",
   "BoundingBox/Y/Value",
   "BoundingBox/Width/Value",
   "BoundingBox/Height/Value",
 };
 
-static const char* Pose[] =
+static const char* Pose2d[] =
 {
   "Pose/X/Value",
   "Pose/Y/Value",
   "Pose/Angle/Value"
+};
+
+static const char* Position3d[] =
+{
+  "Position/X/Value",
+  "Position/Y/Value",
+  "Position/Z/Value"
 };
 
 /*
@@ -56,21 +69,26 @@ struct structKeyValue
 
 typedef std::map<const char*, structKeyValue> mapKeyValue;
 
-static const char ball_bbox_key[] = "ballBoundingBox";
-static const char goal_bbox_key[] = "goalBoundingBox";
+static const char ball_detection_key[] = "ballDetection";
+static const char goal_detection_key[] = "goalDetection";
 
 static mapKeyValue vision_keys =
 {
-  {ball_bbox_key, {sizeof(BoundingBox)/sizeof(char*), BoundingBox}},
-  {goal_bbox_key, {sizeof(BoundingBox)/sizeof(char*), BoundingBox}},
+  {"timestamp", {1, nullptr}},
+  {ball_detection_key, {sizeof(Detection)/sizeof(char*), Detection}},
+  {goal_detection_key, {sizeof(Detection)/sizeof(char*), Detection}},
 };
 
 static const char pose_key[] = "pose";
+static const char ball_global_key[] = "ballGlobal";
+static const char goal_global_key[] = "goalGlobal";
 
 static mapKeyValue world_keys =
 {
-  {"time", {1, nullptr}},
-  {pose_key, {sizeof(Pose)/sizeof(char*), Pose}},
+  {"timestamp", {1, nullptr}},
+  {pose_key, {sizeof(Pose2d)/sizeof(char*), Pose2d}},
+  {ball_global_key, {sizeof(Position3d)/sizeof(char*), Position3d}},
+  {goal_global_key, {sizeof(Position3d)/sizeof(char*), Position3d}},
 };
 
 #endif
