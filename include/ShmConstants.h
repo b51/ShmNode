@@ -40,8 +40,10 @@ static const char* Pose2d[] =
   "Pose/Angle/Value"
 };
 
-static const char* Position3d[] =
+static const char* TimedPosition3d[] =
 {
+  "Time/Value",
+
   "Position/X/Value",
   "Position/Y/Value",
   "Position/Z/Value"
@@ -67,18 +69,22 @@ struct structKeyValue
   const char** names;
 };
 
+///////////////////////////////////////////////////////////////////////
 typedef std::map<const char*, structKeyValue> mapKeyValue;
 
 static const char ball_detection_key[] = "ballDetection";
 static const char goal_detection_key[] = "goalDetection";
+static const char spot_detection_key[] = "spotDetection";
 
 static mapKeyValue vision_keys =
 {
   {"timestamp", {1, nullptr}},
   {ball_detection_key, {sizeof(Detection)/sizeof(char*), Detection}},
   {goal_detection_key, {sizeof(Detection)/sizeof(char*), Detection}},
+  {spot_detection_key, {sizeof(Detection)/sizeof(char*), Detection}},
 };
 
+///////////////////////////////////////////////////////////////////////
 static const char pose_key[] = "pose";
 static const char ball_global_key[] = "ballGlobal";
 static const char goal_global_key[] = "goalGlobal";
@@ -87,8 +93,8 @@ static mapKeyValue world_keys =
 {
   {"timestamp", {1, nullptr}},
   {pose_key, {sizeof(Pose2d)/sizeof(char*), Pose2d}},
-  {ball_global_key, {sizeof(Position3d)/sizeof(char*), Position3d}},
-  {goal_global_key, {sizeof(Position3d)/sizeof(char*), Position3d}},
+  {ball_global_key, {sizeof(TimedPosition3d)/sizeof(char*), TimedPosition3d}},
+  {goal_global_key, {sizeof(TimedPosition3d)/sizeof(char*), TimedPosition3d}},
 };
 
 #endif
