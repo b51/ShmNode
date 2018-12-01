@@ -75,6 +75,8 @@ typedef std::map<const char*, structKeyValue> mapKeyValue;
 static const char ball_detection_key[] = "ballDetection";
 static const char goal_detection_key[] = "goalDetection";
 static const char spot_detection_key[] = "spotDetection";
+static const char teammate_detection_key[] = "spotDetection";
+static const char opponent_detection_key[] = "spotDetection";
 
 static mapKeyValue vision_keys =
 {
@@ -82,6 +84,8 @@ static mapKeyValue vision_keys =
   {ball_detection_key, {sizeof(Detection)/sizeof(char*), Detection}},
   {goal_detection_key, {sizeof(Detection)/sizeof(char*), Detection}},
   {spot_detection_key, {sizeof(Detection)/sizeof(char*), Detection}},
+  {teammate_detection_key, {sizeof(Detection)/sizeof(char*), Detection}},
+  {opponent_detection_key, {sizeof(Detection)/sizeof(char*), Detection}},
 };
 
 ///////////////////////////////////////////////////////////////////////
